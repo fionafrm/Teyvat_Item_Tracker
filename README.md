@@ -2,6 +2,8 @@
 ### Fiona Ratu Maheswari
 ### 2206024575
 
+**Link Adaptable: https://teyvat-item-tracker.adaptable.app/main/**
+
 **- Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
 
 1. Membuat direktori baru bernama Teyvat_Item_Tracker di direktori lokal dan repository baru berjudul sama di GitHub.
