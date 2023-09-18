@@ -1,10 +1,38 @@
-<h1>TEYVAT ITEM TRACKER</h1>
+{% extends 'base.html' %}
 
-<h5>Name: </h5>
-<p>{{ name }}</p>
-<h5>Description: </h5>
-<p>{{ desc }}</p> 
-<h5>Amount: </h5>
-<p>{{ amt }}</p>
-<h5>Category: </h5>
-<p>{{ category }}</p>
+{% block content %}
+    <h1 style="text-align: center;font-family: Verdana;color: #213555;">TEYVAT ITEM TRACKER</h1>
+    <h3 style="text-align: center;font-family: Verdana;color: #213555;">Berikut Item yang Traveler miliki</h3>
+
+    <table style="border-collapse: collapse;">
+        <tr>
+            <th style="border: 3px solid black;">Name</th>
+            <th style="border: 3px solid black;">Description</th>
+            <th style="border: 3px solid black;">Amount</th>
+            <th style="border: 3px solid black;">Category</th>
+            <th style="border: 3px solid black;">Price</th>
+            <th style="border: 3px solid black;">Date Added</th>
+        </tr>
+    
+        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+    
+        {% for item in items %}
+            <tr>
+                <td style="border: 1px solid black;">{{item.name}}</td>
+                <td style="border: 1px solid black;">{{item.description}}</td>
+                <td style="border: 1px solid black;text-align: center;">{{item.amount}}</td>
+                <td style="border: 1px solid black;text-align: center;">{{item.category}}</td>
+                <td style="border: 1px solid black;text-align: center;">{{item.price}}</td>
+                <td style="border: 1px solid black;text-align: center;">{{item.date_added}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <br />
+    
+    <a href="{% url 'main:create_item' %}">
+        <button>
+            Add New Item
+        </button>
+    </a>
+{% endblock content %}

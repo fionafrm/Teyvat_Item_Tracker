@@ -6,3 +6,5 @@ class Item(models.Model):
     description = models.TextField()
     amount = models.IntegerField()
     category = models.TextField()
+    price = models.IntegerField()
+    date_added = models.DateField(auto_now_add=True)
