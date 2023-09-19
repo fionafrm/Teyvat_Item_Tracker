@@ -1,3 +1,74 @@
+# TUGAS 3
+### Fiona Ratu Maheswari
+### 2206024575
+
+**Apa perbedaan antara form POST dan form GET dalam Django?**
+
+Terdapat beberapa perbedaan antara form POST dan form GET dalam Django.
+1. Pada form POST, data formulir akan dikirmkan ke dalam tubuh permintaan HTML-nya sehingga tidak terlihat pada URL, contohnya adalah www.contoh.com/formulir . Sedangkan pada form GET, data formulir akan dikirimkan ke parameter query string dalam URL sehingga isinya akan terlihat pada URL nya, contohnya adalah www.contoh.com/formulir?nama=John&email=john@contoh.com&password=secretpassword .
+2. Jika dilihat dari segi keamanan, form POST lebih aman karena tidak menampilkan datanya pada URL. Sedangkan, form GET lebih berisiko karena menampilkan datanya pada URL.
+3. Tidak ada batasan panjang URL pada form POST. Sedangkan pada form GET, terdapat batasan panjang URL.
+
+**Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?**
+
+1. XML (eXtensible Markup Language):
+XML sering digunakan dalam pertukaran data antara aplikasi yang tidak terkait secara langsung. XML memiliki syntax yang kaku dan kompleks, menggunakan tag dengan tanda kurung siku untuk mendefinisikan elemen data dan atribut. Hal ini membuat XML cocok untuk menyimpan data yang memiliki struktur yang kompleks dan memerlukan pemrosesan yang tepat. Contoh penggunaan XML termasuk konfigurasi aplikasi, pertukaran data enterprise, dan penyimpanan data dalam basis data. Parsing XML memerlukan lebih banyak kode karena strukturnya yang kompleks.
+
+2. JSON (JavaScript Object Notation):
+JSON memiliki format data yang ringan, mudah dibaca, dan mudah ditulis. Ini sering digunakan dalam komunikasi antara server dan peramban web, pengembangan API, dan penyimpanan data terstruktur. JSON menggunakan format pasangan nama-nilai (key-value pairs) yang sederhana dan mirip dengan objek dalam banyak bahasa pemrograman. Parsing JSON lebih mudah karena formatnya yang ringan dan mirip dengan objek dalam bahasa pemrograman. Hal ini membuat JSON menjadi pilihan umum untuk pertukaran data dalam konteks web dan layanan web.
+
+3. HTML (Hypertext Markup Language):
+HTML berperan penting dalam menyusun halaman web dengan menentukan tampilan dan struktur konten yang ditampilkan dalam peramban web. HTML memiliki syntax yang khusus, yang terdiri dari elemen, atribut, dan nilai yang menggambarkan cara elemen-elemen konten diatur dan ditampilkan dalam halaman web. Parsing HTML dilakukan oleh peramban web.
+
+**Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?**
+
+JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena memiliki beberapa kelebihan sebagai berikut. Pertama, JSON memiliki format yang mudah dibaca, sehingga JSON cocok untuk komunikasi antara server dan peramban web. Kedua, JSON menggunakan struktur data yang mirip dengan objek dalam banyak bahasa pemrograman, sehingga memudahkan pemrosesan data di kedua sisi. Hal ini sangat penting dalam pengembangan aplikasi web yang sering mengirim dan menerima data dalam waktu nyata. Selain itu, hampir semua bahasa pemrograman modern memiliki dukungan bawaan untuk mengurai (parsing) data JSON. JSON juga memungkinkan pengguna untuk menggunakan data dengan kompleksitas yang bervariasi.
+
+**Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step**
+
+1. Membuat forms.py pada direktori main dan mengisinya dengan atribut apa saja yang akan diminta untuk Item.
+2. Melakukan impor modul HttpResponseRedirect, ItemForm, dan reverse. Lalu membuat fungsi create_item dengan menggunakan ItemForm.
+3. Mengubah fungsi show_main lebih tepatnya pada bagian context dengan menambahkan 'items': items .
+4. Melakukan impor fungsi create_item pada urls.py di direktoti main dan menambahkan path untuk create_item.
+5. Membuat berkas create_item.html di direktori main/templates dan mengisinya dengan form yang akan ditampilkan pada halaman create_item.
+6. Mengedit main.html agar nantinya data dapat ditampilkan pada halaman main.
+7. Melakukan impor HttpResponse dan serializers pada views.py.
+8. Membuat fungsi show_xml, show_json, show_xml_by_id, serta show_json_by_id pada views.py.
+9. Mengisi fungsi show_xml dengan data = Item.objects.all() lalu return fungsi HttpResponse dimana parameternya content_type="application/xml".
+10. Mengisi fungsi show_json dengan data = Item.objects.all() lalu return fungsi HttpResponse dimana parameternya content_type="application/json".
+11. Mengisi fungsi show_xml_by_id dengan data = Item.objects.filter(pk=id) lalu return fungsi HttpResponse dimana parameternya content_type="application/xml".
+13. Mengisi fungsi show_xml_by_json dengan data = Item.objects.filter(pk=id) lalu return fungsi HttpResponse dimana parameternya content_type="application/json".
+14. Melakukan impor fungsi show_xml, show_json, show_xml_by_id, serta show_json_by_id pada urls.py di direktori main.
+15. Menambahan path pada urlpatterns pada urls.py.
+16. Mencoba kelima fungsi pada postman dengan membuat request baru lalu masukan URL localhost + path fungsi.
+
+**1. Hasil POSTMAN dalam format HTML**
+
+![Hasil_Main_Preview](Hasil-main.png)
+
+![Hasil_Main_1](Hasil-main-1.png)
+
+![Hasil_Main_2](Hasil-main-2.png)
+
+![Hasil_Main_3](Hasil-main-3.png)
+
+**2. Hasil POSTMAN dalam format XML**
+
+![Hasil_XML](Hasil-XML.png)
+
+**3. Hasil POSTMAN dalam format JSON**
+
+![Hasil_JSON](Hasil-JSON.png)
+
+**4. Hasil POSTMAN dalam format XML by id**
+
+![Hasil_XML_by_ID](Hasil-XML-by-ID.png)
+
+**5. Hasil POSTMAN dalam format JSON by id**
+
+![Hasil_JSON_by_ID](Hasil-JSON-by-ID.png)
+
+
 # TUGAS 2
 ### Fiona Ratu Maheswari
 ### 2206024575
