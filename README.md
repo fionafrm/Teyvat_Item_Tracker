@@ -1,3 +1,17 @@
+# TUGAS 4
+### Fiona Ratu Maheswari
+### 2206024575
+
+**Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?**
+
+**Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?**
+
+**Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?**
+
+**Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?**
+
+**Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+
 # TUGAS 3
 ### Fiona Ratu Maheswari
 ### 2206024575

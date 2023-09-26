@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1 style="text-align: center;font-family: Verdana;color: #213555;">TEYVAT ITEM TRACKER</h1>
-    <h3 style="text-align: center;font-family: Verdana;color: #213555;">Berikut Item yang Traveler miliki</h3>
+    <h3 style="text-align: center;font-family: Verdana;color: #213555;">Berikut Item yang {{name}} miliki</h3>
 
     <table style="border-collapse: collapse;">
         <tr>
@@ -12,6 +12,7 @@
             <th style="border: 3px solid black;">Category</th>
             <th style="border: 3px solid black;">Price</th>
             <th style="border: 3px solid black;">Date Added</th>
+            <th style="border: 3px solid black;">Others</th>
         </tr>
     
         {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
@@ -24,6 +25,26 @@
                 <td style="border: 1px solid black;text-align: center;">{{item.category}}</td>
                 <td style="border: 1px solid black;text-align: center;">{{item.price}}</td>
                 <td style="border: 1px solid black;text-align: center;">{{item.date_added}}</td>
+                <td style="border: 1px solid black;text-align: center;">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="increase">
+                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                        <button type="submit">+1</button>
+                    </form>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="decrease">
+                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                        <button type="submit">-1</button>
+                    </form>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="remove">
+                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                        <button type="submit">Remove</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>
@@ -35,4 +56,11 @@
             Add New Item
         </button>
     </a>
+    
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Logout
+        </button>
+    </a>
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
 {% endblock content %}
