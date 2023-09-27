@@ -3,14 +3,46 @@
 ### 2206024575
 
 **Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?**
+UserCreationForm digunakan untuk pendaftaran user baru. Form ini diperlukan agar aplikasi dapat melakukan autentikasi.
+Kelebihan: UserCreationForm mudah untuk dikostumisasi sehingga kita dapat menggunakannya sesuai dengan kebutuhan kita. Tidak hanya itu, UserCreationForm dapat melalukan validasi otomatis dan telah terintegrasi dengan model User secara default oleh Django, sehingga kita tidak perlu memikirkan tentang validasi user.
+Kekurangan: Fiturnya masih terbatas dan tidak cocok untuk validasi yang kompleks.
 
 **Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?**
+**Autentikasi** adalah proses verifikasi identitas user. Dalam Django, autentikasi artinya memastikan bahwa user tersebut adalah sesuai dengan yang mereka input kepada aplikasi, hal ini bisa dilihat melalui kombinasi username dan password. Autentikasi sangat penting untuk diimplementasikan agar kita dapat mencegah akses tidak sah ke aplikasi.
+**Otorisasi** adalah proses pemberian atau penolakan izin kepada user untuk mengakses sumber daya tertentu atau melakukan tindakan tertentu. Hal ini dapat dilakukan setelah melakukan autentikasi. Otorisasi sangat penting untuk diimplementasikan agar kita dapat mencegah terjadinya akses dan tindakan tertentu yang tidak sesuai dengan role user.
+
+Kedua proses ini sangat penting untuk diimplementasikan agar keamanan aplikasi kita terjaga dan user dapat merasa aman terhadap aplikasi yang kita miliki
 
 **Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?**
+Cookies adalah mekanisme yang memungkinkan server web untuk menyimpan informasi di browser klien untuk digunakan dalam sesi atau kunjungan berikutnya.
 
 **Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?**
+Penggunaan cookies tidak selalu aman dalam pengembangan web. Masih ada beberapa risiko potensial yang harus diwaspadai.
+1. Cross-Site Scripting (XSS): Jika web yang kita miliki masih rentan terhadap serangan XSS, maka penyerang dapat mencuri cookies dari user aplikasi kita. Hal ini bisa sangat berbahaya jika cookies tersebut berisi informasi sensitif seperti ID sesi.
+2. Third-Party Cookies: Cookies yang ditempatkan oleh domain pihak ketiga dapat digunakan untuk melacak perilaku user di web milik kita. Hal ini dapat melanggar privasi user.
+3. Over-reliance on Cookies: Jika informasi sensitif hanya disimpan dalam cookies tanpa enkripsi atau proteksi lainnya, maka hal ini dapat membahayakan informasi user.
 
 **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+1. Menjalankan env pada folder root untuk memulai modifikasi web.
+2. Membuat fungsi register dengan parameter request pada views.py di folder main. Lalu tambahkan import redirect, UserCreationForm, dan messages. Lalu mengisi fungsi register agar fungsi tersebut dapat menampilkan form register untuk user, lalu memberikan message jika user berhasil daftar, lalu mengarahkan user ke halaman login.
+3. Membuat halaman register dengan membuat file register.html di folder main/templates . Lalu isi file tersebut dengan form yang memiliki method POST dan buat juga button untuk daftar.
+4. Melakukan routing halaman register di urls.py milik main dengan melakukan import fungsi register dan menambahkan path register.
+5. Membuat fungsi login_user dengan parameter request pada views.py di folder main. Lalu tambahkan import authenticate dan login. Lalu mengisi fungsi login_user agar fungsi tersebut dapat menampilkan form login untuk user, lalu memberikan message jika user berhasil login, lalu mengarahkan user ke halaman main milik user.
+6. Membuat halaman login dengan membuat file login.html di folder main/templates . Lalu isi file tersebut dengan form yang memiliki method POST, button untuk login, dan message yang dapat mengarahkan ke halaman register jika user belum memiliki akun.
+7. Melakukan routing halaman login di urls.py milik main dengan melakukan import fungsi login_user dan menambahkan path login.
+8. Membuat fungsi logout_user dengan parameter request pada views.py di folder main. Lalu tambahkan import logout. Lalu mengisi fungsi logout_user agar fungsi tersebut dapat menghentikan sesi user yang telah login tersebut dan mengarahkan user ke halaman login.
+9. Tambahkan button logout pada main.html
+10. Melakukan routing halaman logout di urls.py milik main dengan melakukan import fungsi logout_user dan menambahkan path logout.
+11. Membuat dua akun dummy dan memasukkan 3 dummy data pada tiap akun.
+12. Menambahkan User pada model dengan import User pada models.py .
+13. Menambahkan atribut user pada kelas Item.
+14. Memodifikasi fungsi create_item pada views.py di main dengan melakukan save item.
+15. Mengubah fungsi show_main dimana items akan difilter berdasarkan user.
+16. Menambahkan import datetime, HttpResponseRedirect, dan reverse pada views.py. Lalu menambahkan cookies last_login pada login_user dan menambahkan bagian last_login pada show_main. Lalu ubah fungsi logout_user untuk menghapus cookie last_login ketika user logout. Lalu menambahkan messages last_login di main.html .
+17. Lalu makemigrations dan migrate karena adanya perubahan model.
+18. Lalu menambahkan conditionals untuk melakukan increase, decrease, dan remove Item pada tiap Item di views.py dan menyesuaikannya di main.html .
+19. Melakukan push ke github.
+
 
 # TUGAS 3
 ### Fiona Ratu Maheswari
