@@ -1,53 +1,107 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 style="text-align: center;font-family: Verdana;color: #213555;">TEYVAT ITEM TRACKER</h1>
-    <h3 style="text-align: center;font-family: Verdana;color: #213555;">Berikut Item yang {{name}} miliki</h3>
+    <style>
+        body {
+            background: linear-gradient(to top, #7C81AD, #2E4374);
+        }
+        h1, h3 {
+            text-align: center;
+            color: #f4f4f4;
+            font-family: Verdana;
+        }
 
-    <table style="border-collapse: collapse;">
-        <tr>
-            <th style="border: 3px solid black;">Name</th>
-            <th style="border: 3px solid black;">Description</th>
-            <th style="border: 3px solid black;">Amount</th>
-            <th style="border: 3px solid black;">Category</th>
-            <th style="border: 3px solid black;">Price</th>
-            <th style="border: 3px solid black;">Date Added</th>
-            <th style="border: 3px solid black;">Others</th>
-        </tr>
-    
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-    
-        {% for item in items %}
+        .table {
+            align-items: center;
+            text-align: center;
+            background-color: #f4f4f4;
+            border-radius: 5px; 
+            width: 80%;
+            max-width: 800px; 
+            padding: 20px; 
+            margin-top: 20px; 
+        }
+        table th {
+            text-align: center;
+            background-color: #7C81AD; 
+            color: white;
+            padding: 10px;
+            border: 2px solid #2E4374;
+        }
+
+        table td {
+            text-align: center;
+            background-color: #E5C3A6;
+            padding: 10px;
+            border: 2px solid #2E4374;
+        }
+
+        /* Style untuk tombol di dalam tabel */
+        form {
+            display: inline;
+        }
+
+        form button {
+            background-color: #2E4374;
+            color: white; 
+            padding: 5px 10px;
+            border: none;
+            text-align: center;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 5px; 
+        }
+    </style>
+    <h1>TEYVAT ITEM TRACKER</h1>
+    <h3>Berikut Item yang {{name}} miliki</h3>
+
+    <div class = "tabel"> 
+        <table>
             <tr>
-                <td style="border: 1px solid black;">{{item.name}}</td>
-                <td style="border: 1px solid black;">{{item.description}}</td>
-                <td style="border: 1px solid black;text-align: center;">{{item.amount}}</td>
-                <td style="border: 1px solid black;text-align: center;">{{item.category}}</td>
-                <td style="border: 1px solid black;text-align: center;">{{item.price}}</td>
-                <td style="border: 1px solid black;text-align: center;">{{item.date_added}}</td>
-                <td style="border: 1px solid black;text-align: center;">
-                    <form method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="action" value="increase">
-                        <input type="hidden" name="item_id" value="{{ item.id }}">
-                        <button type="submit">+1</button>
-                    </form>
-                    <form method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="action" value="decrease">
-                        <input type="hidden" name="item_id" value="{{ item.id }}">
-                        <button type="submit">-1</button>
-                    </form>
-                    <form method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="action" value="remove">
-                        <input type="hidden" name="item_id" value="{{ item.id }}">
-                        <button type="submit">Remove</button>
-                    </form>
-                </td>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Date Added</th>
+                <th>Others</th>
             </tr>
-        {% endfor %}
-    </table>
+        
+            {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+        
+            {% for item in items %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>{{item.category}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.date_added}}</td>
+                    <td>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="increase">
+                            <input type="hidden" name="item_id" value="{{ item.id }}">
+                            <button type="submit">+1</button>
+                        </form>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="decrease">
+                            <input type="hidden" name="item_id" value="{{ item.id }}">
+                            <button type="submit">-1</button>
+                        </form>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="remove">
+                            <input type="hidden" name="item_id" value="{{ item.id }}">
+                            <button type="submit">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
     
     <br />
     

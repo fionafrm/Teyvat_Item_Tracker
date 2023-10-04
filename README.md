@@ -1,3 +1,51 @@
+# TUGAS 5
+### Fiona Ratu Maheswari
+### 2206024575
+
+**Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.**
+Terdapat beberapa element selector yang ada pada CSS.
+*1. Universal Selector*
+Universal selector digunakan untuk memilih semua elemen dalam dokumen HTML. Biasanya Universal Selector digunakan ketika ingin mereset semua style pada HTML (reset CSS) atau untuk memilih semua elemen dalam konteks tertentu.
+*2. Type selector*
+Type selector digunakan untuk memilih semua elemen dengan nama elemen yang cocok. Biasanya type selector digunakan ketika kita ingin menerapkan style pada semua elemen yang memiliki nama tertentu.
+*3. ID Selector*
+ID selector digunakan untuk memilih elemen dengan atribut id tertentu. Biasanya ID selector digunakan ketika kita ingin merancang satu elemen khusus pada halaman web kita.
+*4. Class Selector*
+Class Selector digunakan untuk memilih semua elemen yang memiliki nama kelas tertentu. Biasanya Class Selector digunakan ketika kita ingin menerapkan style yang sama pada beberapa elemen dengan kelas yang sama.
+*5. Descendant Selector*
+Descendant Selector digunakan untuk memilih suatu elemen yang merupakan turunan dari elemen lainnya. Biasanya Descendant Selector digunakan ketika kita ingin menerapkan style pada elemen-elemen yang berada dalam konteks tertentu.
+*6. Child Selector*
+Child Selector digunakan untuk memilih suatu elemen yang merupakan anak langsung dari elemen lainnya. Biasanya Child Selector digunakan ketika kita ingin merancang elemen-elemen yang menjadi anak langsung dari elemen lain, dan tidak peduli dengan elemen anak dari anak tersebut
+*7. Adjacent Sibling Selector*
+Adjacent Sibling Selector digunakan untuk memilih suatu elemen yang menjadi saudara sejajar elemen lainnya, yaitu elemen yang memiliki elemen yang sama sebagai elemen induk. Biasanya Adjacent Sibling Selector digunakan ketika kita ingin merancang elemen-elemen yang sejajar satu sama lain.
+*8. General Sibling Selector*
+General Sibling Selector digunakan untuk memilih suatu elemen yang menjadi saudara sejajar elemen lainnya, tanpa peduli hubungan hierarki mereka. Biasanya Adjacent Sibling Selector digunakan ketika kita ingin merancang elemen-elemen yang sejajar satu sama lain, tanpa peduli apakah mereka memiliki elemen induk yang sama.
+
+**Jelaskan HTML5 Tag yang kamu ketahui.**
+1. '!DOCTYPE html': Ini adalah deklarasi dokumen yang digunakan mengikuti standar HTML5.
+2. html: Ini adalah elemen root yang mengelilingi semua konten halaman web.
+3. head: Elemen ini berisi informasi metadata tentang halaman web, seperti judul, karakter set, dan tautan ke file eksternal seperti CSS dan JavaScript.
+4. meta: Digunakan untuk mendefinisikan metadata.
+5. title: Menentukan judul dari halaman web, yang akan ditampilkan di bilah judul browser.
+6. link: Digunakan untuk menghubungkan halaman web dengan file eksternal seperti stylesheet (CSS).
+7. style: Ini adalah elemen untuk menyematkan style CSS secara langsung ke dalam halaman HTML.
+8. script: Digunakan untuk menambahkan kode JavaScript ke halaman web.
+9. body: Ini adalah elemen yang berisi semua konten yang akan ditampilkan di halaman web.
+10. header: Digunakan untuk mengelompokkan elemen-elemen yang merupakan bagian atas dari halaman web.
+11. nav: Ini adalah elemen yang digunakan untuk mengelompokkan tautan navigasi atau menu halaman web.
+
+**Jelaskan perbedaan antara margin dan padding.**
+Margin mengacu pada ruang di luar elemen, dan ini adalah jarak yang mengatur elemen tersebut dengan elemen-elemen lain di sekitarnya. Margin tidak memiliki latar belakang atau warna, dan penggunaannya lebih untuk mengendalikan jarak antara elemen dengan elemen lain. Di sisi lain, padding merujuk pada ruang di dalam elemen, yang mengatur jarak antara batas elemen dan kontennya sendiri. Salah satu perbedaan utama adalah bahwa padding dapat memiliki latar belakang atau warna, sehingga memengaruhi tampilan elemen dan kontennya.
+
+
+**Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?**
+Bootstrap dan Tailwind CSS adalah dua framework CSS yang dapat digunakan untuk membangun tampilan web yang responsif. Bootstrap menyediakan sejumlah besar komponen dan gaya pra-didefinisikan, sehingga cocok untuk proyek-proyek yang membutuhkan desain cepat dan konsisten. Di sisi lain, Tailwind CSS mengikuti pendekatan "utility-first" yang memberikan tingkat fleksibilitas tinggi dalam menentukan tampilan, tetapi memerlukan lebih banyak penulisan kode CSS khusus. Pemilihan antara keduanya tergantung pada kebutuhan proyek, tingkat desain kustom, dan tingkat fleksibilitas yang Anda inginkan dalam menentukan tampilan web.
+
+**Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+1. Menghapus style pada html sebelumnya.
+2. Menambahkan style pada html login, register, main, dan create_item, seperti body, .login dan lain-lain. Perubahan yang dilakukan adalah seperti merubah warna dan align items.
+3. Memastikan tiap bagian dari tiap file html mendapatkan style.
+
 # TUGAS 4
 ### Fiona Ratu Maheswari
 ### 2206024575
