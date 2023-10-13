@@ -1,3 +1,37 @@
+# TUGAS 6
+### Fiona Ratu Maheswari
+### 2206024575
+
+**Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.**
+1. Asynchronous programming: Pada pemrograman asynchronous, kita dapat memulai operasi yang memerlukan waktu lama untuk menyelesaikan (seperti operasi I/O) dan melanjutkan pekerjaan lain tanpa menunggu operasi yang lama itu selesai. Hal ini memungkinkan sistem untuk tidak terhenti atau diblokir oleh operasi yang berjalan lama. Pemrograman asynchronous juga lebih efisien untuk skenario di mana beberapa operasi dapat berjalan tanpa harus menunggu yang lainnya, seperti pada aplikasi web yang menangani banyak permintaan secara simultan. Namun pemrograman asynchronous dapat lebih kompleks karena melibatkan konsep seperti callback, promises, atau async/await. Selain itu, debugging bisa lebih sulit karena alur eksekusi yang tidak linier.
+
+2. Synchronous programming: Pada pemrograman synchronous operasi dieksekusi satu per satu. Jika sebuah operasi memblokir (misalnya menunggu input/output atau respons jaringan), eksekusi selanjutnya harus menunggu hingga operasi yang sedang berlangsung selesai. Pemrograman synchronous bisa menjadi kurang efisien jika ada banyak operasi yang memblokir, karena sistem menunggu hingga setiap tugas selesai sebelum memulai yang berikutnya. Akan tetapi, perograman synchronous biasanya lebih mudah untuk dipahami dan didebug karena alur eksekusi kode lebih linier dan berurutan.
+
+**Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.**
+Event-driven programming adalah ketika alur dieksekusinya program berdasarkan peristiwa yang terjadi seperti input pengguna. Untuk merespon hal tersebut, biasanya dijalankan fungsi tertentu (event listeners). Contohnya adalah ketika pengguna menekan button Add Item AJAX, maka modal yang berisikan form add item akan terpanggil.
+
+**Jelaskan penerapan asynchronous programming pada AJAX.**
+Ketika sebuah permintaan AJAX dikirimkan ke server, hal tersebut dilakukan secara asynchronous, sehingga tidak akan memblokir eksekusi kode JavaScript lainnya. Event listener yang terkait dengan permintaan AJAX ini akan dijalankan saat respons dari server telah diterima. Ini memungkinkan kita untuk mengatasi data yang diterima atau menangani kesalahan yang mungkin terjadi. Yang paling penting, karena sifat asynchronous nya, permintaan AJAX tidak akan menghentikan interaksi pengguna dengan situs web, memungkinkan antarmuka web untuk tetap responsif. Contohnya adalah ketika memanggil fetch() lalu didalamnya ada then sesuatu.
+
+**Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.**
+1. Fetch API: API native yang ada di sebagian besar browser modern, yang berarti kita tidak perlu menambahkan library eksternal untuk menggunakannya. Tidak hanya itu, Fetch API juga menggunakan sintaks yang lebih modern dan janji (promises) based. Ini memungkinkan penggunaan async/await untuk menulis kode yang lebih rapi. Selain itu, Fetch API mendukung berbagai fitur seperti streaming respons, Request/Response objects, dan lainnya. Fetch API juga didukung oleh browser modern tetapi mungkin memerlukan polyfill untuk browser lama.
+
+2. jQuery AJAX: karena jQuery AJAX adalah bagian dari library jQuery, kita harus memasukkan library jQuery ke dalam proyek Anda untuk memanfaatkan fitur AJAX-nya. Sintaks milik AJAX mungkin lebih familiar jika kita telah menggunakan jQuery. jQuery AJAX emnyediakan abstraksi yang lebih tinggi dengan banyak fitur bawaan, seperti pengolahan data otomatis berdasarkan tipe MIME, konversi data, dan pilihan untuk memanipulasi permintaan dan respons. Karena jQuery telah ada sejak lama, fitur AJAX-nya memiliki kompatibilitas yang lebih baik dengan browser lama jika Anda menggunakan versi jQuery yang lebih tua.
+
+Menurut saya sendiri, saya lebih suka menggunakan Fetch API, namun ini semua tergantung dengan kebutuhan proyek. Jika kita mengembangkan untuk browser modern dan menginginkan pendekatan yang lebih native tanpa ketergantungan eksternal, Fetch API mungkin pilihan yang lebih baik. Jika kita membutuhkan kompatibilitas yang lebih luas dengan browser lama, jQuery AJAX mungkin lebih sesuai.
+
+**Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+1. Menambahkan fungsi get_item_json di views.py lalu melakukan routing get_item_json di urls.py
+2. Menghapus table lama dari main dan menggantikannya dengan item_table
+3. Menambahkan fungsi add_item_ajax dan import csrf_exempt di views.py lalu melakukan routing add_item_ajax di urls.py
+4. Menambahkan script fungsi getItems di main.html
+5. Menambahkan script fungsi refreshItems di main.html
+6. Menambahkan modal untuk form AJAX di main.html
+7. Menambahkan script fungsi addItem di main.html
+8. Memastikan button yang ada di modal nantinya akan memanggil addItem
+9. Menambahkan STATIC_ROOT pada settings.py agar file static tercetak
+10. Menjalankan command collectstatic
+
 # TUGAS 5
 ### Fiona Ratu Maheswari
 ### 2206024575

@@ -3,18 +3,24 @@
 {% block content %}
     <style>
         body {
-            background: linear-gradient(to top, #7C81AD, #2E4374);
+            background-color: #102C57;
         }
-        h1, h3 {
+
+        h1, h3, h5 {
             text-align: center;
-            color: #f4f4f4;
+            color: #F8F0E5;
+            font-family: Verdana;
+        }
+
+        .modal-header h1 {
+            text-align: center;
+            color: black;
             font-family: Verdana;
         }
 
         .table {
             align-items: center;
             text-align: center;
-            background-color: #f4f4f4;
             border-radius: 5px; 
             width: 80%;
             max-width: 800px; 
@@ -31,19 +37,18 @@
 
         table td {
             text-align: center;
-            background-color: #E5C3A6;
+            background-color: #DAC0A3;
             padding: 10px;
             border: 2px solid #2E4374;
         }
 
-        /* Style untuk tombol di dalam tabel */
         form {
             display: inline;
         }
 
-        form button {
-            background-color: #2E4374;
-            color: white; 
+        .item_button form button {
+            background-color: #2E4374; 
+            color: white;
             padding: 5px 10px;
             border: none;
             text-align: center;
@@ -52,11 +57,71 @@
             cursor: pointer;
             margin-right: 5px; 
         }
+        
+        .item_button a button {
+            background-color: #2E4374; 
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            text-align: center;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 5px; 
+        }
+
+        .main_button a button {
+            background-color: #2E4374;
+            color: white;
+        }
+
     </style>
+    
     <h1>TEYVAT ITEM TRACKER</h1>
     <h3>Berikut Item yang {{name}} miliki</h3>
-
-    <div class = "tabel"> 
+    
+    <table id="item_table">
+    </table>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <textarea class="form-control" id="amount" name="amount"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="col-form-label">Category:</label>
+                            <textarea class="form-control" id="category" name="category"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class = "tabel"> 
         <table>
             <tr>
                 <th>Name</th>
@@ -79,42 +144,97 @@
                     <td>{{item.price}}</td>
                     <td>{{item.date_added}}</td>
                     <td>
-                        <form method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="action" value="increase">
-                            <input type="hidden" name="item_id" value="{{ item.id }}">
-                            <button type="submit">+1</button>
-                        </form>
-                        <form method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="action" value="decrease">
-                            <input type="hidden" name="item_id" value="{{ item.id }}">
-                            <button type="submit">-1</button>
-                        </form>
-                        <form method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="action" value="remove">
-                            <input type="hidden" name="item_id" value="{{ item.id }}">
-                            <button type="submit">Remove</button>
-                        </form>
+                        <div class="item_button">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="increase">
+                                <input type="hidden" name="item_id" value="{{ item.id }}">
+                                <button type="submit">+1</button>
+                            </form>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="decrease">
+                                <input type="hidden" name="item_id" value="{{ item.id }}">
+                                <button type="submit">-1</button>
+                            </form>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="remove">
+                                <input type="hidden" name="item_id" value="{{ item.id }}">
+                                <button type="submit">Remove</button>
+                            </form>
+                            <a href="{% url 'main:edit_item' item.pk %}">
+                                <button>
+                                    Edit
+                                </button>
+                            </a>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
         </table>
-    </div>
+    </div> -->
     
     <br />
-    
-    <a href="{% url 'main:create_item' %}">
-        <button>
-            Add New Item
-        </button>
-    </a>
-    
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
+
+    <div class="main_button">
+        <a href="{% url 'main:create_item' %}">
+            <button>
+                Add New Item
+            </button>
+        </a>
+        
+        <a href="{% url 'main:logout' %}">
+            <button>
+                Logout
+            </button>
+        </a>
+    </div>
     <h5>Sesi terakhir login: {{ last_login }}</h5>
+
+    <script>
+        async function getItems() {
+            return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+        }
+        async function refreshItems() {
+            document.getElementById("item_table").innerHTML = ""
+            const items = await getItems()
+            let htmlString = `<tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Date Added</th>
+            </tr>`
+            items.forEach((item) => {
+                htmlString += `\n<tr>
+                <td>${item.fields.name}</td>
+                <td>${item.fields.description}</td>
+                <td>${item.fields.amount}</td>
+                <td>${item.fields.category}</td>
+                <td>${item.fields.price}</td>
+                <td>${item.fields.date_added}</td>
+            </tr>` 
+            })
+            
+            document.getElementById("item_table").innerHTML = htmlString
+        }
+
+        function addItem() {
+            fetch("{% url 'main:add_item_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshItems)
+            
+            document.getElementById("form").reset()
+            return false
+        }
+
+        document.getElementById("button_add").onclick = addItem
+        refreshItems()
+    </script>
+
+    
 {% endblock content %}

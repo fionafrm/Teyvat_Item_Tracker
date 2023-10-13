@@ -5,12 +5,13 @@ from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseNotFound, HttpResponseRedirect
 from django.http import HttpResponse
 from django.core import serializers
 from main.forms import ItemForm
 from main.models import Item
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -21,20 +22,17 @@ def show_main(request):
     if request.method == "POST":
         action = request.POST.get('action')
         item_id = request.POST.get('item_id')
-        try:
-            item = Item.objects.get(id=item_id)
+        item = Item.objects.get(id=item_id)
 
-            if action == "increase":
-                item.amount += 1
-            elif action == "decrease" and item.amount > 0:
-                item.amount -= 1
-            elif action == "remove":
-                item.delete()
-
+        if action == "increase":
+            item.amount += 1
             item.save()
-
-        except Item.DoesNotExist:
-            pass
+        elif action == "decrease" and item.amount > 0:
+            item.amount -= 1
+            item.save()
+        elif action == "remove":
+            item.delete()
+            items = Item.objects.filter(user=request.user)
 
     context = {
         'name': request.user.username,
@@ -109,3 +107,42 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+#Untuk ngambil data dengan json
+def get_item_json(request):
+    item = Item.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', item))
+
+#Untuk edit Item
+def edit_item(request, id):
+    # Ngambil item dari id
+    item = Item.objects.get(pk = id)
+
+    # Set Item sebagai instance dari form
+    form = ItemForm(request.POST or None, instance=item)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_item.html", context)
+
+#Pake AJAX
+@csrf_exempt
+def add_item_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        description = request.POST.get("description")
+        amount = request.POST.get("amount")
+        category = request.POST.get("category")
+        user = request.user
+
+        new_item= Item(name=name, price=price, description=description, amount=amount, category=category, user=user)
+        new_item.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
