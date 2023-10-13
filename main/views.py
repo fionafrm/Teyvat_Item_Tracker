@@ -129,6 +129,14 @@ def edit_item(request, id):
     context = {'form': form}
     return render(request, "edit_item.html", context)
 
+def delete_item(request, id):
+    # Get data berdasarkan ID
+    item = Item.objects.get(pk = id)
+    # Hapus data
+    item.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))
+
 #Pake AJAX
 @csrf_exempt
 def add_item_ajax(request):
