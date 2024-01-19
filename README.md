@@ -246,5 +246,5 @@ Model: Komponen yang berhubungan dengan data dan logika bisnis.
 View: View bertanggung jawab untuk menampilkan data kepada pengguna.
 ViewModel: ViewModel berisi logika tampilan (UI logic) yang menghubungkan Model dengan View. Ini memungkinkan tampilan untuk berkomunikasi dengan Model tanpa harus mengetahui detailnya.
 
-**Perbedaan utama MVC, MVT, dan MVVM:**
+*Perbedaan utama MVC, MVT, dan MVVM:*
 MVC akan menerima input pada Controller lalu diarahkan ke view (Controller menjadi penghubung view dengan model), sedangkan pada MVT dan MVVM akan menerima input dan diarahkan ke view langsung. Lalu untuk MVT sendiri, setelah view mendapatkan data dari model, maka view akan menyalurkan data untuk tampilan ke template, lalu template akan memberikan respon ke user melalui urls. Khusus MVVM, ViewModel menjadi penghubung antara view dengan model.
